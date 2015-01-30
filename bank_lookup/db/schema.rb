@@ -14,7 +14,7 @@
 ActiveRecord::Schema.define(version: 20150130135839) do
 
   create_table "banks", force: true do |t|
-    t.integer  "routing_number", null: false
+    t.string   "routing_number", null: false
     t.string   "name"
     t.string   "phone_number"
     t.string   "street"

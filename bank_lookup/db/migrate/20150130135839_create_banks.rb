@@ -1,7 +1,7 @@
 class CreateBanks < ActiveRecord::Migration
   def change
     create_table :banks do |t|
-      t.integer :routing_number, null: false
+      t.string :routing_number, null: false
       t.string :name
       t.string :phone_number
       t.string :street
