@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150130204920) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "banks", force: true do |t|
     t.string   "routing_number", null: false
     t.string   "name"
@@ -27,7 +30,7 @@ ActiveRecord::Schema.define(version: 20150130204920) do
     t.datetime "updated_at"
   end
 
-  add_index "banks", ["routing_number"], name: "index_banks_on_routing_number"
+  add_index "banks", ["routing_number"], name: "index_banks_on_routing_number", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -43,6 +46,6 @@ ActiveRecord::Schema.define(version: 20150130204920) do
     t.datetime "updated_at"
   end
 
-  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority"
+  add_index "delayed_jobs", ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
 
 end
