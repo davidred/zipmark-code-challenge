@@ -31,3 +31,4 @@ end
 
 gem 'bootstrap-sass'
 gem 'rspec'
+gem 'delayed_job_active_record'

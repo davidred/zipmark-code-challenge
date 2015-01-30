@@ -13,9 +13,9 @@ class Bank < ActiveRecord::Base
   end
 
   def self.parse_bank_info
-    File.readlines("#{Rails.root}/app/models/concerns/truncated_list.txt").each do |line|
+    File.readlines("#{Rails.root}/app/models/concerns/test.txt").each do |line|
       next if line.empty? || line.nil?
-      bank_match = /^(\d{9}).{26}(.{36})(.{36})(.{20})(\D{2})?(\d{9})(\d{10})/.match(line)
+      bank_match = /^(\d{9}).{26}(.{36})(.{36})(.{20})(\D{2})?(\d{9})(.{10})/.match(line)
       bank_data = create_hash(bank_match)
       bank = self.find_by_routing_number(bank_data[:routing_number])
       if bank
@@ -25,6 +25,8 @@ class Bank < ActiveRecord::Base
       end
     end
   end
+
+  private
 
   def self.create_hash(bank_data)
     {

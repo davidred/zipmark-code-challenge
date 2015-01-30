@@ -5,7 +5,7 @@ class BanksController < ApplicationController
     if @bank
       render :index
     else
-      flash[:errors] = ["Bank not found"]
+      flash.now[:errors] = ["Bank not found"] if params[:routing_number]
       render :index
     end
   end
