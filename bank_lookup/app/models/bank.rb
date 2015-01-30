@@ -19,7 +19,7 @@ class Bank < ActiveRecord::Base
       bank_data = create_hash(bank_match)
       bank = self.find_by_routing_number(bank_data[:routing_number])
       if bank
-        bank.update!(bank_data) unless bank.as_json == bank_data
+        bank.update!(bank_data) unless bank.to_json == bank_data
       else
         self.create!(bank_data)
       end
@@ -38,7 +38,7 @@ class Bank < ActiveRecord::Base
     }
   end
 
-  def as_json
+  def to_json
     {
       routing_number: self.routing_number,
       name: self.name,
@@ -47,6 +47,23 @@ class Bank < ActiveRecord::Base
       city: self.city,
       state: self.state,
       zip_code: self.zip_code
+    }
+  end
+
+  def output_json
+    {
+      name: self.name,
+      routing_number: self.routing_number,
+      record_type: "Record Type",
+      phone_number: self.phone_number,
+      address:
+      {
+        street: self.street,
+        street_2: nil,
+        city: self.city,
+        state: self.state,
+        zip_code: self.zip_code
+      }
     }
   end
 end
