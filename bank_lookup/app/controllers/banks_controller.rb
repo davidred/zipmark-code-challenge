@@ -1,7 +1,13 @@
 class BanksController < ApplicationController
 
   def index
-
+    @bank = Bank.find_by_routing_number(params[:routing_number])
+    if @bank
+      render :index
+    else
+      flash[:errors] = ["Bank not found"]
+      render :index
+    end
   end
 
   def show
